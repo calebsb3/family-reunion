@@ -1,35 +1,28 @@
 <script setup lang="ts">
 import { useEventStore } from '../stores/EventStore';
-import { useRouter } from 'vue-router'
-
-const router = useRouter();
 
 const eventStore = useEventStore();
 
-function goToDishList(id:number){
-  console.log(id)
-  eventStore.updateCurrentEventID(id);
-  router.push({name:'dishes'})
-}
+const dishes = eventStore.getCurrentEvent?.dishes.filter(d => d !== undefined)
 
-eventStore.updateEventList();
 </script>
 
 <template>
+  <h2>Dishes for {{ eventStore.getCurrentEvent?.name }}</h2>
   <div>
     <table class="custom-table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Number of People</th>
+          <th>Dish Name</th>
+          <th>Bringer</th>
+          <th>Type</th>
         </tr>
       </thead>
-      <tbody v-if="eventStore.getEvents.length > 0">
-        <tr v-for="currentEvent in eventStore.getEvents" :key="currentEvent.id" @click="goToDishList(currentEvent.id)">
-          <td>{{ currentEvent.name }}</td>
-          <td>{{ new Date(currentEvent.date).toLocaleDateString() }}</td>
-          <td>{{ currentEvent.peopleCount }}</td>
+      <tbody>
+        <tr v-for="(dish, index) in dishes" :key="index">
+          <td>{{ dish.name }}</td>
+          <td>{{ dish.bringer }}</td>
+          <td>{{ dish.type.toString() }}</td>
         </tr>
       </tbody>
     </table>

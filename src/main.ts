@@ -5,12 +5,13 @@ import App from './App.vue'
 import EventsListVue from './components/EventsList.vue'
 import DishListVue from './components/DishList.vue'
 import {createRouter, createWebHashHistory} from 'vue-router'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const routes = [
     { path: '/', name: 'events', component: EventsListVue },
     { path: '/dish', name: 'dishes', component: DishListVue },
   ]
-  
   
   const router = createRouter({
     history: createWebHashHistory(),

@@ -27,6 +27,10 @@ const getNumPeople = computed(() => {
   return currentPeopleCount !== undefined ? currentPeopleCount : 0;
 })
 
+const filteredTypes = computed(() => {
+  return Object.keys(DishType).filter(key => !isNaN(Number(key))).map(key => Number(key));
+})
+
 function formatDishType(type: number){
     const dishString = DishType[type];
     return dishString.charAt(0).toUpperCase() + dishString.slice(1);
@@ -82,7 +86,7 @@ function updateNumPeople(){
           <div class="col-md-3">
             <select v-model="typeToAdd">
                 <option disabled value="">Select a status</option>
-                <option v-for="type in DishType" :value="type">{{ DishType[type] }}</option>
+                <option v-for="type in filteredTypes" :value="type" :key="type">{{ DishType[type] }}</option>
             </select>
           </div>
           <div class="col-md-3">

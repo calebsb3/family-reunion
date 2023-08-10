@@ -2,8 +2,7 @@
 </script>
 
 <template>
-
-  <h1>Stoddard Events Planner</h1>
+  <h1 class="pb-4">Stoddard Events Planner</h1>
   <router-view></router-view>
 </template>
 

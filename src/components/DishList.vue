@@ -56,7 +56,7 @@ function updateNumPeople(){
   <button class="mb-3" @click="ToEvents()">Events</button>
   <div class="container pb-2">
     <div class="row">
-      <div class="col-4">
+      <div class="col-md-4 pt-view-custom">
         <div class="row mb-3">
           <h2>Number of People Attending: {{ getNumPeople }}</h2>
         </div>
@@ -72,24 +72,24 @@ function updateNumPeople(){
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-md-8 pt-view-custom">
         <div class="row pb-2">
           <h2>Dishes for {{ eventStore.getCurrentEvent?.name }} on {{ formattedDate }}</h2>
         </div>
         <div class="row pb-2">
-          <div class="col-md-3">
+          <div class="col-md-3 pt-form-custom">
             <input type="text" class="form-control" placeholder="Add a dish..." v-model="nameToAdd">
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 pt-form-custom">
             <input type="text" class="form-control" placeholder="Who's bringing it?" v-model="bringerToAdd">
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 pt-form-custom">
             <select v-model="typeToAdd">
                 <option disabled value="">Select a status</option>
                 <option v-for="type in filteredTypes" :value="type" :key="type">{{ DishType[type] }}</option>
             </select>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 pt-form-custom">
             <button class="btn btn-primary" @click="AddDish()">Add Dish</button>
           </div>
         </div>
@@ -130,5 +130,14 @@ function updateNumPeople(){
 
 .custom-table th {
   background-color: #f2f2f2; /* Add a background color to header cells */
+}
+
+@media (max-width: 576px) {
+  .pt-view-custom {
+    padding-top: 3rem; /* Customize the padding size */
+  }
+  .pt-form-custom {
+    padding-top: 1rem;
+  }
 }
 </style>../helper/firebaseListener
